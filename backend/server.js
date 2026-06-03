@@ -6,7 +6,7 @@ app.use(express.json());
 const productRoutes = require("./routes/productRoutes");
 
 app.get("/", (req, res) => {
-  res.send("Ahmed Ecommerce Backend Running");
+  res.send("Ahmed Ecommerce Backend Running cicd is deployed");
 });
 
 app.use("/products", productRoutes);
