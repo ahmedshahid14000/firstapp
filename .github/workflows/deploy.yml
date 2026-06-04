@@ -1,4 +1,4 @@
-name: Deploy to EC2
+name: Auto Deploy to EC2
 
 on:
   push:
@@ -13,14 +13,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Deploy to EC2
+      - name: Deploy via SSH
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ubuntu
-          key: ${{ secrets.EC2_KEY }}
+          key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             cd ~/firstapp/backend
-            git pull origin main
-            docker compose down
-            docker compose up -d --build
+            chmod +x deploy.sh
+            ./deploy.sh
